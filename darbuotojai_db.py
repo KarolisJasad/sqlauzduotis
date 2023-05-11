@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import create_engine, Column, Integer, String, Date
+from sqlalchemy import create_engine, Integer, String, Date
 from sqlalchemy.orm import declarative_base, mapped_column
 
 engine = create_engine('sqlite:///employee.db', echo=False)
