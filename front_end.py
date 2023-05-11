@@ -12,7 +12,7 @@ while True:
         main.add_employee(window, values)
 
     if event == '-VIEWLIST-':
-        main.update_table(window)
+        main.employee_list(window)
 
     if event == '-CHANGELIST-':
         main.employee_changelist(window, values)

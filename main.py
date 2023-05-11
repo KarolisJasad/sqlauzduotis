@@ -42,7 +42,7 @@ def delete_employee(employee_id):
         session.delete(employee)
         session.commit()
 
-def update_table(window):
+def employee_list(window):
     employees = get_employees()
     window['-EMPLOYEES-'].update([f'{e.id} {e.name} {e.surname} {e.birthdate} {e.position} {e.salary} {e.working_since}' for e in employees])
 
@@ -56,7 +56,7 @@ def delete_selected_employee(window, values):
             employee_id = employee.id
             delete_employee(employee_id)
             sg.popup('Employee deleted succesfully')
-    update_table(window)
+    employee_list(window)
 
 def save_updated_employee(window, employee_id, values):
     if employee_id is not None:
@@ -69,7 +69,7 @@ def save_updated_employee(window, employee_id, values):
             try:
                 birthdate = datetime.strptime(birthdate, '%Y-%m-%d').date()
                 employee_id = change_employee(employee_id, name=name, surname=surname, birthdate=birthdate, position=position, salary=salary)
-                update_table(window)
+                employee_list(window)
             except ValueError:
                 sg.popup('Incorrect date format, please use this format: YYYY-MM-DD.')
 
@@ -110,9 +110,6 @@ def add_employee(window, values):
             sg.popup('Incorrect date format, please use this format: YYYY-MM-DD.')
     else:
         sg.popup('Please fill all the fields.')
-    update_table(window)
-
-
-
+    employee_list(window)
 
 # create_employee("Petras", "Petraitis", datetime(1998, 7, 14), "Programuotojas", "1500")
