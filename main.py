@@ -68,7 +68,7 @@ def save_updated_employee(window, employee_id, values):
         if name or surname or birthdate or position or salary:
             try:
                 birthdate = datetime.strptime(birthdate, '%Y-%m-%d').date()
-                employee_id = change_employee(employee_id, name=name, surname=surname, birthdate=birthdate, position=position, salary=salary)
+                change_employee(employee_id, name=name, surname=surname, birthdate=birthdate, position=position, salary=salary)
                 employee_list(window)
             except ValueError:
                 sg.popup('Incorrect date format, please use this format: YYYY-MM-DD.')
@@ -88,16 +88,6 @@ def employee_changelist(window, values):
             sg.popup('Invalid selected row index.')
     else:
         sg.popup('Please select an employee from the list.') 
-
-def get_index(values):
-    selected_rows = values['-EMPLOYEES-']
-    if selected_rows:
-        selected_row_index = selected_rows[0]
-        employees = get_employees()
-        if selected_row_index < len(employees):
-            employee = employees[selected_row_index]
-            employee_id = employee.id   
-    return employee_id
 
 def add_employee(window, values):
     keys=['-NAME-', '-SURNAME-', '-BIRTHDATE-', '-POSITION-', '-SALARY-']
