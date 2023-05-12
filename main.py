@@ -89,6 +89,16 @@ def employee_changelist(window, values):
     else:
         sg.popup('Please select an employee from the list.') 
 
+def get_index(values):
+    selected_rows = values['-EMPLOYEES-']
+    if selected_rows:
+        selected_row_index = selected_rows[0]
+        employees = get_employees()
+        if selected_row_index < len(employees):
+            employee = employees[selected_row_index]
+            employee_id = employee.id   
+    return employee_id
+
 def add_employee(window, values):
     keys=['-NAME-', '-SURNAME-', '-BIRTHDATE-', '-POSITION-', '-SALARY-']
     input_values = [values[key] for key in keys]
